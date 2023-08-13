@@ -46,8 +46,8 @@ def percentage_change(old, new):
     return f"{change:.0f}%"
 
 def get_total_additional_engagements(initial_key, ending_key, indices, all_data):
-    total_initial = sum(float(row[indices[initial_key]]) for row in all_data)
-    total_ending = sum(float(row[indices[ending_key]]) for row in all_data)
+    total_initial = sum(string_to_float(row[indices[initial_key]]) if row[indices[initial_key]].strip() else 0 for row in all_data)
+    total_ending = sum(string_to_float(row[indices[ending_key]]) if row[indices[ending_key]].strip() else 0 for row in all_data)
     return total_ending - total_initial
 
 def add_summary_table(document, data, title):
